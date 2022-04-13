@@ -4,6 +4,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Contratos from '@/components/vendas/Contratos.vue'
 import Dashboard from '@/components/dashboard/Dashboard.vue'
 import Home from '@/views/Home.vue'
+import Lead from '@/components/vendas/Lead.vue'
 import Leads from '@/components/vendas/Leads.vue'
 import Login from '@/views/Login.vue'
 import Servicos from '@/components/servicos/Servicos.vue'
@@ -25,6 +26,7 @@ const routes = [
          { path: 'vendas', component: Vendas, children: 
             [
                { path: 'leads', component: Leads}, //meusite.com/home/vendas/leads
+               { path: 'leads/:id', component: Lead}, //meusite.com/home/vendas/leads/id
                { path: 'contratos', component: Contratos}, //meusite.com/home/vendas/contratos
             ] 
          },

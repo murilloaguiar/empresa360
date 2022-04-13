@@ -1,0 +1,53 @@
+<template>
+   <div>
+      <h3> {{dados.id}} - {{dados.nome}}</h3>
+
+      <div class="mb-3 row">
+         <label class="col-sm-2 col-form-label">ID</label>
+         <div class="col-sm-12">
+            <input type="text" readonly class="form-control-plaintext" :value="dados.id">
+         </div>
+      </div>
+
+      <div class="mb-3 row">
+         <label class="col-sm-2 col-form-label">Nome</label>
+         <div class="col-sm-12">
+            <input type="text" class="form-control" :value="dados.nome">
+         </div>
+      </div>
+
+      <div class="mb-3 row">
+         <label class="col-sm-2 col-form-label">Telefone</label>
+         <div class="col-sm-12">
+            <input type="text" class="form-control" :value="dados.telefone">
+         </div>
+      </div>
+
+      <div class="col-auto">
+         <button class="btn btn-primary">Atualizar</button>
+      </div>
+
+
+   </div>
+</template>
+
+<script>
+export default {
+   name: 'Lead',
+   data:()=>({
+      dados: null
+   }),
+
+   methods: {
+      getDadosApi(){
+         fetch(`http://localhost:3000/leads/${this.$route.params.id}`)
+            .then(response => response.json())
+            .then(data => this.dados = data)
+      }
+   },
+
+   created(){
+      this.getDadosApi()
+   }
+}
+</script>
