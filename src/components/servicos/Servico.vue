@@ -24,10 +24,22 @@ export default {
       this.getDadosApi(`http://localhost:3000/servicos/${this.$route.params.id}`)
    },
 
+   beforeRouteUpdate(to, from, next){
+      //to = $route para onde estamos indo
+      //from = $route de onde viemos
+      //next = faz o fluxo de navegação seguir em frente
+
+      if(to.params.id != undefined )this.getDadosApi(`http://localhost:3000/servicos/${to.params.id}`)
+
+      next()
+   },
+
+   /*
    watch: {
-      $route(to/*, from*/){ //convenção do watch para o objeto $route
+      $route(to, from){ //convenção do watch para o objeto $route
          if(to.params.id != undefined )this.getDadosApi(`http://localhost:3000/servicos/${to.params.id}`)
       }
    }
+   */
 }
 </script>
