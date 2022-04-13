@@ -23,8 +23,9 @@
          </div>
       </div>
 
-      <div class="col-auto">
+      <div class="col-auto d-flex justify-content-between">
          <button class="btn btn-primary">Atualizar</button>
+         <button class="btn btn-secondary" @click="$router.push({name: 'leads'})">Voltar</button>
       </div>
 
 

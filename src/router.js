@@ -10,6 +10,7 @@ import Login from '@/views/Login.vue'
 import Servicos from '@/components/servicos/Servicos.vue'
 import Site from '@/views/Site.vue'
 import Vendas from '@/components/vendas/Vendas.vue'
+import VendasPadrao from '@/components/vendas/VendasPadrao.vue'
 
 
 //array de objetos onde cada objeto define as rotas da aplicação
@@ -25,14 +26,15 @@ const routes = [
       children: [
          { path: 'vendas', component: Vendas, children: 
             [
-               { path: 'leads', component: Leads}, //meusite.com/home/vendas/leads
-               { path: 'leads/:id', component: Lead}, //meusite.com/home/vendas/leads/id
-               { path: 'contratos', component: Contratos}, //meusite.com/home/vendas/contratos
+               { path: 'leads', component: Leads, name: 'leads'}, //meusite.com/home/vendas/leads
+               { path: 'leads/:id', component: Lead, name: 'lead'}, //meusite.com/home/vendas/leads/id
+               { path: 'contratos', component: Contratos, name: 'contratos'}, //meusite.com/home/vendas/contratos
+               { path: '', component: VendasPadrao}, //meusite.com/home/vendas/
             ] 
          },
 
-         { path: 'servicos', component: Servicos},
-         { path: 'dashboard', component: Dashboard}
+         { path: 'servicos', component: Servicos, name: 'servicos'},//meusite.com/home/servicos
+         { path: 'dashboard', component: Dashboard} //meusite.com/home/dashboard
       ],
    },
 
