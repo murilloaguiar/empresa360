@@ -7,6 +7,7 @@ import Home from '@/views/Home.vue'
 import Lead from '@/components/vendas/Lead.vue'
 import Leads from '@/components/vendas/Leads.vue'
 import Login from '@/views/Login.vue'
+import Servico from '@/components/servicos/Servico.vue'
 import Servicos from '@/components/servicos/Servicos.vue'
 import Site from '@/views/Site.vue'
 import Vendas from '@/components/vendas/Vendas.vue'
@@ -33,7 +34,11 @@ const routes = [
             ] 
          },
 
-         { path: 'servicos', component: Servicos, name: 'servicos'},//meusite.com/home/servicos
+         { path: 'servicos', component: Servicos, name: 'servicos', children: 
+            [
+               {path:':id', component: Servico, name: 'servico'}
+            ]
+         },//meusite.com/home/servicos
          { path: 'dashboard', component: Dashboard} //meusite.com/home/dashboard
       ],
    },
