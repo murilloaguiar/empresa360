@@ -77,31 +77,25 @@ export default {
 
    methods: {
       pesquisar(){
-         //console.log(this.formPesquisa)
+         
+         const url = `http://localhost:3000/contratos?${this.parametrosRelacionamento}`
 
-         Object.keys(this.formPesquisa).forEach(chave=>{
-            if(this.formPesquisa[chave] == '') delete this.formPesquisa[chave]
-         })
-
-
-         const queryParams = new URLSearchParams(this.formPesquisa).toString()
-
-         this.getDadosApi(`http://localhost:3000/contratos?${this.parametrosRelacionamento}&${queryParams}`)
+         this.getDadosApi(url, this.formPesquisa)
       }
    },
    
    created(){
-      const queryParams = new URLSearchParams(this.$route.query).toString()
 
-      this.getDadosApi(`http://localhost:3000/contratos?${this.parametrosRelacionamento}&${queryParams}`)
+      const url = `http://localhost:3000/contratos?${this.parametrosRelacionamento}`
+      this.getDadosApi(url, this.$route.query)
    },
 
    beforeRouteUpdate(to, from, next){
 
       //(to.query) => temos um objeto, precisamos converter para um URLSearchParams
-      const queryParams = new URLSearchParams(to.query).toString()
-   
-      this.getDadosApi(`http://localhost:3000/contratos?${this.parametrosRelacionamento}&${queryParams}`)
+      const url = `http://localhost:3000/contratos?${this.parametrosRelacionamento}`
+
+      this.getDadosApi(url, to.query)
 
       next();
    }
