@@ -22,17 +22,26 @@ import VendasPadrao from '@/components/vendas/VendasPadrao.vue'
 const routes = [
    {
       path: '/', //meusite.com/
-      component: Site
+      component: Site,
+      meta: {requerAutorizacao: false}
    },
 
    {
       path: '/home', //caminho para o caminho do componente. meusite.com/home
+      meta: {requerAutorizacao: true},
       alias: '/app',
       component: Home,
       children: [
          { path: 'vendas', component: Vendas, children: 
             [
-               { path: 'leads', component: Leads, name: 'leads'}, //meusite.com/home/vendas/leads
+               { 
+                  path: 'leads', 
+                  component: Leads, 
+                  name: 'leads',
+                  beforeEnter(){
+                     console.log('Guarda de rota before enter')
+                  }
+               }, //meusite.com/home/vendas/leads
 
                { path: 'leads/:id', 
                   component: Lead, 
@@ -105,6 +114,27 @@ const router = createRouter({
    history: createWebHistory(), //método de navegação
    routes //routes: routes //recupera quais são as rotas
 }) //precisa ser importada do pacote vue-router
+
+
+router.beforeEach((to)=>{
+   // console.log('Origem', from)
+   // console.log('Destino', to)
+   // console.log('Método executado antes do acesso a rota destino')
+
+   if (to.meta.requerAutorizacao) console.log('validar acesso')
+      
+   else console.log('apenas seguir')
+       
+})
+
+router.afterEach((to, from)=>{
+   console.log('Origem', from)
+   console.log('Destino', to)
+   console.log('Método executado após a conclusão da navegação')
+
+})
+
+
 
 export default router 
 // -- fim das rotas
