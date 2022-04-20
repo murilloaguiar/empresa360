@@ -33,15 +33,36 @@ const routes = [
          { path: 'vendas', component: Vendas, children: 
             [
                { path: 'leads', component: Leads, name: 'leads'}, //meusite.com/home/vendas/leads
-               { path: 'leads/:id', component: Lead, name: 'lead', alias: ['/l/:id','/pessoa/:id','/:id']}, //meusite.com/home/vendas/leads/id
+
+               { path: 'leads/:id', 
+                  component: Lead, 
+                  props: true, 
+                  /*props: {
+                     id: 4
+                  },
+                  props: (route) => {
+
+                     //implementar uma lógica para definir as props que serão submetidas para o componente roteado
+                     return {
+                        id: route.params.id 
+                     }
+                  },*/
+                  name: 'lead', 
+                  alias: ['/l/:id','/pessoa/:id','/:id']}, //meusite.com/home/vendas/leads/id
+
                { path: 'contratos', component: Contratos, name: 'contratos'}, //meusite.com/home/vendas/contratos
+
                { path: '', component: VendasPadrao, name: 'vendas'}, //meusite.com/home/vendas/
             ] 
          },
 
          { path: 'servicos', component: Servicos, name: 'servicos', children: 
             [
-               {path:':id', name: 'servico', alias: '/s/:id', components: 
+               {
+                  path:':id', 
+                  name: 'servico', 
+                  alias: '/s/:id', 
+                  props: {default: true, indicadores: true, opcoes: true}, components: 
                   {
                      default: Servico,
                      opcoes: Opcoes,
