@@ -113,14 +113,25 @@ const routes = [
 //configuração do roteamento da aplicação
 const router = createRouter({
    history: createWebHistory(), //método de navegação
-   routes //routes: routes //recupera quais são as rotas
+   routes, //routes: routes //recupera quais são as rotas
+   scrollBehavior(to, from, savedPosition){
+      //return {left:0, top:150} //left = eixo x | top = eixo y
+      //console.log(to.hash)
+      console.log(savedPosition)
+
+      if(savedPosition) return savedPosition
+
+      if(to.hash) return { el: to.hash} //el vai apontar dinamicamente para um elemento html cujo id seja identico ao fragmento hash da rota
+      
+      return {left:0, top:0}
+   }
 }) //precisa ser importada do pacote vue-router
 
 
 router.beforeEach((/*to*/)=>{
    // console.log('Origem', from)
    // console.log('Destino', to)
-   console.log('Guarda global beforeEach Método executado antes do acesso a rota destino')
+   //console.log('Guarda global beforeEach Método executado antes do acesso a rota destino')
 
    // if (to.meta.requerAutorizacao) console.log('validar acesso')
       
@@ -131,12 +142,12 @@ router.beforeEach((/*to*/)=>{
 router.afterEach((/*to, from*/)=>{
    //console.log('Origem', from)
    //console.log('Destino', to)
-   console.log('Guarda global afterEach Método executado após a conclusão da navegação')
+   //console.log('Guarda global afterEach Método executado após a conclusão da navegação')
 
 })
 
 router.beforeResolve(()=>{
-   console.log('Guarda global beforeResolve')
+   //console.log('Guarda global beforeResolve')
 })
 
 
