@@ -39,6 +39,7 @@ const routes = [
                   component: Leads, 
                   name: 'leads',
                   beforeEnter(){
+                     //poderíamos verificar se o usuário tem permissão de acessar a rota
                      console.log('Guarda de rota before enter')
                   }
                }, //meusite.com/home/vendas/leads
@@ -116,23 +117,28 @@ const router = createRouter({
 }) //precisa ser importada do pacote vue-router
 
 
-router.beforeEach((to)=>{
+router.beforeEach((/*to*/)=>{
    // console.log('Origem', from)
    // console.log('Destino', to)
-   // console.log('Método executado antes do acesso a rota destino')
+   console.log('Guarda global beforeEach Método executado antes do acesso a rota destino')
 
-   if (to.meta.requerAutorizacao) console.log('validar acesso')
+   // if (to.meta.requerAutorizacao) console.log('validar acesso')
       
-   else console.log('apenas seguir')
+   // else console.log('apenas seguir')
        
 })
 
-router.afterEach((to, from)=>{
-   console.log('Origem', from)
-   console.log('Destino', to)
-   console.log('Método executado após a conclusão da navegação')
+router.afterEach((/*to, from*/)=>{
+   //console.log('Origem', from)
+   //console.log('Destino', to)
+   console.log('Guarda global afterEach Método executado após a conclusão da navegação')
 
 })
+
+router.beforeResolve(()=>{
+   console.log('Guarda global beforeResolve')
+})
+
 
 
 

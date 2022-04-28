@@ -5,7 +5,7 @@
       <div class="mb-3 row">
          <label class="col-sm-2 col-form-label">ID</label>
          <div class="col-sm-12">
-            <input type="text" readonly class="form-control-plaintext" :value="dados.id">
+            <input type="text" readonly class="form-control" :value="dados.id">
          </div>
       </div>
 
@@ -48,6 +48,14 @@ export default {
       console.log(this.$props)
       //this.getDadosApi(`http://localhost:3000/leads/${this.$route.params.id}`)
       this.getDadosApi(`http://localhost:3000/leads/${this.id}`) // via props
+   },
+
+   beforeRouteLeave(){
+      const confirmar = window.confirm('Deseja sair deste formulário?')
+
+      return confirmar 
+
+
    }
 }
 </script>

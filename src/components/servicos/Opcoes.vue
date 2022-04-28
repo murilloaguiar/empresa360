@@ -12,6 +12,10 @@ export default {
 
    created(){
       //console.log('Opcoes', this.id)
+   },
+
+   beforeRouteUpdate(/*to, from*/){
+      console.log('Guarda de componente beforeRouteUpdate')
    }
 }
 </script>
